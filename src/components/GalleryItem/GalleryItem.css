@@ -1,6 +1,7 @@
 img {
   width: 400px;
   height: 400px;
+  margin: 20px;
 }
 
 button {
@@ -11,6 +12,7 @@ button {
 .picture {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: space-around;
+    flex: 1;
 }
