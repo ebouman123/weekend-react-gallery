@@ -1,18 +1,33 @@
 img {
   width: 400px;
   height: 400px;
-  margin: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+}
+
+.imageDiv {
+  width: 400px;
+  height: 400px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+}
+
+.description, .title{
+    font-size: 25px;
+    font-family: fantasy;
 }
 
 button {
-    width: 85px;
-    height: 35px;
+  width: 85px;
+  height: 35px;
 }
 
 .picture {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1;
 }
