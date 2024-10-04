@@ -1,5 +1,28 @@
+import axios from "axios";
+import { useState,useEffect } from "react";
+
+import GalleryList from "../GalleryList/GalleryList";
 
 function App() {
+
+  let [galleryItems, setGalleryItems] = useState([])
+    
+  const getGalleryItems = () => {
+      axios
+        .get("/api/gallery")
+        .then((response) => {
+          setGalleryItems(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    useEffect(() => {
+      getGalleryItems();
+    }, []);
+
+
     return (
       <div>
         <header>
@@ -7,8 +30,8 @@ function App() {
         </header>
 
         <p>The gallery goes here!</p>
-        <img src="images/goat_small.jpg"/>
-        <img src="images/goat_stache.png"/>
+        <GalleryList galleryItems={galleryItems} getGalleryItems={getGalleryItems} />
+
       </div>
     );
 }
