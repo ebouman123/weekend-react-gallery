@@ -1,0 +1,16 @@
+img {
+  width: 400px;
+  height: 400px;
+}
+
+button {
+    width: 85px;
+    height: 35px;
+}
+
+.picture {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

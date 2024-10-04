@@ -1,4 +1,5 @@
 import axios from "axios";
+import './GalleryItem.css'
 
 export default function GalleryItem({ getGalleryItems, picture }) {
   const loveIt = () => {
@@ -14,7 +15,7 @@ export default function GalleryItem({ getGalleryItems, picture }) {
 
   return (
     <>
-      <div data-testid="galleryItem">
+      <div data-testid="galleryItem" className="picture">
         <img src={picture.url} />
         <button onClick={loveIt}>Love it!! 😻</button>
         <p>{picture.likes} People love this!</p>
