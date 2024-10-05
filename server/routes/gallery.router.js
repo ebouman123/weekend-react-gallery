@@ -35,4 +35,21 @@ router.get("/", (req, res) => {
     });
 });
 
+
+router.post("/", (req, res) => {
+  const newImage = req.body;
+  const sqlText = `INSERT INTO gallery ("url", "title", "description")
+                     VALUES ($1, $2,$3)`;
+
+  pool
+    .query(sqlText, [newImage.URL, newImage.title, newImage.description])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${sqlText}`, error);
+      res.sendStatus(500); 
+    });
+});
+
 module.exports = router;
