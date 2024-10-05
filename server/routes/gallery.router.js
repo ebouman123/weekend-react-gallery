@@ -19,7 +19,8 @@ router.put("/like/:id", (req, res) => {
     .catch((err) => {
       console.error("Error making PUT query", err);
       res.sendStatus(500);
-    });});
+    });
+});
 
 // GET /gallery
 router.get("/", (req, res) => {
@@ -35,7 +36,6 @@ router.get("/", (req, res) => {
     });
 });
 
-
 router.post("/", (req, res) => {
   const newImage = req.body;
   const sqlText = `INSERT INTO gallery ("url", "title", "description")
@@ -48,7 +48,24 @@ router.post("/", (req, res) => {
     })
     .catch((error) => {
       console.log(`Error making database query ${sqlText}`, error);
-      res.sendStatus(500); 
+      res.sendStatus(500);
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  let itemId = req.params.id;
+  let queryParams = [itemId];
+
+  let queryText = 'DELETE FROM "gallery" WHERE "id" = $1;';
+
+  pool
+    .query(queryText, queryParams)
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.error(`err: ${queryText}`, error);
+      res.sendStatus(500);
     });
 });
 
