@@ -2,6 +2,7 @@ import axios from "axios";
 import "./GalleryItem.css";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { Button } from "@mui/material";
 
 export default function GalleryItem({ getGalleryItems, picture }) {
   let [isFlipped, setIsFlipped] = useState(false);
@@ -59,11 +60,24 @@ export default function GalleryItem({ getGalleryItems, picture }) {
           <img src={picture.url} />
         )}
       </div>
-      <button data-testid="like" onClick={loveIt}>
-        Love it!! 😻
-      </button>
-      <button onClick={deleteImage}>Delete</button>
-      <p>{picture.likes} People love this!</p>
+      <div className="imageInfo">
+        <Button
+          variant="contained"
+          color="success"
+          data-testid="like"
+          onClick={loveIt}
+        >
+          Love it!! 😻
+        </Button>
+        <p className="likesText">{picture.likes} People love this!</p>
+        <Button
+          variant="outlined"
+          color="error"
+          onClick={deleteImage}
+        >
+          Delete
+        </Button>
+      </div>
     </div>
   );
 }

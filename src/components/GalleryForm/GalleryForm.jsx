@@ -1,5 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import { Box } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { Button } from "@mui/material";
+
+import './GalleryForm.css'
 
 export default function GalleryForm({ getGalleryItems }) {
   let [URL, setURL] = useState("");
@@ -9,52 +14,62 @@ export default function GalleryForm({ getGalleryItems }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (URL.length > 0 && title.length > 0 && description.length > 0) {
-      axios
-        .post("/api/gallery", {
-          URL: URL,
-          title: title,
-          description: description,
-        })
-        .then((response) => {
-          event.target.reset();
-          getGalleryItems();
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }else{
-        alert('Please fill out all inputs')
-    }
+    axios
+      .post("/api/gallery", {
+        URL: URL,
+        title: title,
+        description: description,
+      })
+      .then((response) => {
+        event.target.reset();
+        getGalleryItems();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
     <>
+    <div className="catForm">
       <h2>Add a Cat!</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="urlInput">URL: </label>
-        <input
-          id="urlInput"
-          type="text"
-          placeholder="Image URL"
+      <Box
+        component="form"
+        sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        alignItems="center"
+        display="flex"
+      >
+        <TextField
+          required
+          id="imageURL"
+          label="Required"
+          helperText="Image URL"
+          variant="filled"
           onChange={(event) => setURL(event.target.value)}
         />
-        <label htmlFor="titleInput">Title: </label>
-        <input
+        <TextField
+          required
           id="titleInput"
-          type="text"
-          placeholder="Give your photo a title"
+          label="Required"
+          helperText="Give your photo a title"
+          variant="filled"
           onChange={(event) => setTitle(event.target.value)}
         />
-        <label htmlFor="descriptionInput">Description: </label>
-        <input
+        <TextField
+          required
           id="descriptionInput"
-          type="text"
-          placeholder="Describe the photo"
+          label="Required"
+          helperText="Describe the photo"
+          variant="filled"
           onChange={(event) => setDescription(event.target.value)}
         />
-        <button type="submit">Add Cat 🐈</button>
-      </form>
+        <Button variant="contained" type="submit">
+          Add Cat 🐈
+        </Button>
+      </Box>
+      </div>
     </>
   );
 }
