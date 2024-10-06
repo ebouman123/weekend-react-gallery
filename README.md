@@ -6,7 +6,7 @@ This project's purpose was to practice our full-stack skills with our new piece 
 
 ## Screen Shot
 
-![Screenshot of the web app](images/README-1)
+![Screenshot of the web app](public/images/README-1.png)
 
 ### Prerequisites
 
